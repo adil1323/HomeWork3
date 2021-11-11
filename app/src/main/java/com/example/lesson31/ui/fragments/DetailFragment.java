@@ -9,15 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lesson31.R;
 import com.example.lesson31.databinding.FragmentDetailBinding;
-import com.example.lesson31.ui.adapter.TaskAdapter;
 import com.example.lesson31.ui.viewmodel.SharedViewModel;
 
 public class DetailFragment extends Fragment {
 
     FragmentDetailBinding binding;
-    TaskAdapter adapter = new TaskAdapter();
     SharedViewModel viewModel;
 
 
@@ -25,18 +22,18 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetailBinding.inflate(getLayoutInflater(), container, false);
-        ininilize();
+        initialize();
         getData();
         return binding.getRoot();
     }
 
 
-    private void ininilize() {
+    private void initialize() {
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
     }
 
     private void getData() {
-        viewModel.SetPosition(viewModel.position);
+        viewModel.setPosition(viewModel.position);
         binding.population.setText(viewModel.list.get(viewModel.position).getPopulation());
         binding.arms.setImageResource(viewModel.list.get(viewModel.position).getArms());
     }

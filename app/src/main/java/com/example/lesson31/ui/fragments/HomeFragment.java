@@ -6,11 +6,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -53,7 +51,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<TaskModel> taskModels) {
                 adapter.addList(taskModels);
+                binding.materialBtn.setVisibility(View.GONE);
             }
+
         });
 
     }
@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecView();
-        ininilize();
+        initialize();
         initId();
         setupListener();
     }
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
         adapter.setOnItemClick(new OnItemClick() {
             @Override
             public void OnClick(int position) {
-                mainViewModel.SetPosition(position);
+                mainViewModel.setPosition(position);
                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
                 navController.navigate(R.id.action_homeFragment_to_detailFragment);
 
@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void ininilize() {
+    private void initialize() {
         mainViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
     }
 

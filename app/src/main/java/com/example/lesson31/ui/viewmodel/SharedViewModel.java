@@ -13,7 +13,7 @@ public class SharedViewModel extends ViewModel {
     public MutableLiveData<ArrayList<TaskModel>> mutableLiveData = new MutableLiveData<>();
     public ArrayList<TaskModel> list = new ArrayList<>();
 
-    public void SetPosition(int position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 
